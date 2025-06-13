@@ -13,9 +13,13 @@ An interactive Streamlit web app that predicts patient hospital readmission risk
 ## 📂 Project Structure
 
 📁 healthcare_readmission-app/
+
 ├── app.py 
+
 ├── lgbm_model1.pkl 
+
 ├── requirements.txt 
+
 └── README.md 
 
 
