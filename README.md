@@ -6,19 +6,21 @@ An interactive Streamlit web app that predicts patient hospital readmission risk
 
 ## 🚀 Live Demo
 
-🔗 [Click here to view the app](https://usha880-healthcare-readmission-app.streamlit.app)
+🔗 [Click here to view the app]
+
+(https://healthcare-readmission-app.onrender.com)
 
 ---
 
 ## 📂 Project Structure
 
-📁 healthcare_readmission-app/
-
 ├── app.py 
 
 ├── lgbm_model1.pkl 
 
-├── requirements.txt 
+├── requirements.txt
+
+├── Dockerfile 
 
 └── README.md 
 
@@ -34,53 +36,72 @@ An interactive Streamlit web app that predicts patient hospital readmission risk
 - Correlation heatmaps and boxplots  
 ✅ Predict readmission risk for selected patient  
 ✅ Download prediction results  
-✅ Fully styled with custom CSS for better UX  
+✅ Fully styled with custom CSS for a smooth user experience  
 
 ---
 
 ## 📁 Dataset Source
 
-This project is based on the **Diabetes 130-US hospitals** dataset:  
-🔗 https://www.kaggle.com/datasets/whenamancodes/diabetes-prediction-dataset
+This project uses the **Diabetes 130-US hospitals** dataset:  
+🔗 [Kaggle Dataset Link](https://www.kaggle.com/datasets/whenamancodes/diabetes-prediction-dataset)
 
 ---
 
 ## ⚙️ Technologies Used
 
 - **Python**
-- **Streamlit** – for the web app interface
-- **LightGBM** – for high-speed, accurate predictions
-- **Pandas & NumPy** – for data manipulation
-- **Seaborn & Matplotlib** – for visualizations
-- **Custom CSS** – for a clean, responsive design
+- **Streamlit** – frontend UI framework
+- **LightGBM** – machine learning model
+- **Pandas & NumPy** – data preprocessing
+- **Seaborn & Matplotlib** – visualizations
+- **Docker** – containerized deployment on Render
+- **Custom CSS** – UI enhancements
 
 ---
 
 ## 🧠 Model Details
 
-The LightGBM model was trained using:
-- 48 engineered features (demographics, diagnosis codes, medication)
-- Preprocessing steps include missing value imputation and categorical encoding
-- The model outputs a binary prediction (Readmitted / Not Readmitted) with probability score
+- Trained on 48 key healthcare features (e.g., demographics, diagnosis codes, medications)
+- Preprocessing includes:
+  - Missing value handling
+  - Categorical encoding
+- Model Output:
+  - Binary prediction: **Readmitted** / **Not Readmitted**
+  - Probability score shown with each prediction
 
 ---
 
 ## 💡 How to Use
 
-1. Clone this repo or open it on Streamlit Cloud
-2. Upload a healthcare patient CSV file
-3. Explore the dataset visually
-4. Predict readmission risk for any patient row
-5. Download the prediction as a CSV
+1. Open the app using the link above.
+2. Upload a healthcare patient dataset in CSV format.
+3. Navigate through tabs to explore data.
+4. Select a patient record to predict readmission risk.
+5. Download the prediction results as a CSV file.
 
 ---
 
 ## 📌 Deployment
 
-Deployed on [Streamlit Cloud](https://streamlit.io/cloud)  
-To deploy your own:
+✅ **Deployed on Render**: [https://render.com]
 
-bash
+(https://healthcare-readmission-app.onrender.com)  
+Used Docker for containerization with the following setup:
+
+### Dockerfile Highlights:
+```Dockerfile
+FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["streamlit", "run", "app.py", "--server.port=10000", "--server.address=0.0.0.0"]
+
+
+To Run Locally:
+
 git clone https://github.com/Usha880/healthcare_readmission-app.git
 cd healthcare_readmission-app
-streamlit run app.py 
+streamlit run app.py
+
+
